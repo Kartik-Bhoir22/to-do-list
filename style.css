@@ -5,17 +5,29 @@
 
 body{
     display: flex;
-    justify-content: center;
-    align-items: center;
+    flex-direction: column;
     height: 100vh;
     background-color: white;
     color: black;
     transition: background-color 0.4s ease, color 0.4s ease;
 }
+.navbar{
+ display: flex;
+ justify-content: flex-end;
+ padding: 30px;
+}
 
+
+.container{
+    flex: 1;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
 .dark-mode {
     background-color: black;
     color: white;
+    
     
 }
 
