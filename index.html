@@ -16,18 +16,12 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class="navbar"><button id="theme-changer">dark mode</button></div>
-
         <div class="container">
-        <div class="box">
-        <input type="text" id="win-input" placeholder="enter your wins">
-        <button id="add-wins">add to win-list</button>
-      
-        <div class="win_list">
-            
+            <h1>To-Do list</h1>
+            <input type="text" class="input_task" id="input" name="input" placeholder="enter a task">
+            <button onclick="createTask()" class="btn" id="btn">Add</button>
         </div>
-        </div>
-        </div>
+        <div class="task-list"></div>
         <script src="script.js" async defer></script>
     </body>
 </html>

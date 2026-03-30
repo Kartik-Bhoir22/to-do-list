@@ -1,34 +1,61 @@
-const input_wins = document.getElementById('win-input');
-const addbtn = document.getElementById('add-wins')
-const listContainer = document.querySelector('.win_list');
-/** change theme */
-const changetheme = document.getElementById('theme-changer').addEventListener('click', () =>{
+const input = document.getElementById('input');
+const btn = document.querySelector('.btn');
+const taskbox = document.querySelector('.task-list');
 
-    let theme = document.body;
-    theme.classList.toggle('dark-mode');
-})
-/** restore on list on refresh */
-let storage_box = JSON.parse(localStorage.getItem('lists')) || [];
+let edittarget = null;
 
-storage_box.forEach(item => {
-    const li = document.createElement('li');
-    li.textContent = item;
-    listContainer.appendChild(li);
-});
+function createTask() {
+    if (input.value !== ''){
 
-/** input lists to localstorage */
-addbtn.addEventListener('click' , () => {
-   const inputs = input_wins.value.trim();
+        let li = document.createElement('li');
 
-   if(inputs === '') return;
+        if(edittarget) {
+            edittarget.firstChild.textContent = input.value;
+            edittarget = null ;
+            btn.textContent = 'add';
+            input.value = '';
+            return
+        }
 
-   storage_box.push(inputs);
+        
+        
+        let p = document.createElement('p');
+        p.textContent = input.value;
+        
+        let delbtn = document.createElement('button');
+        delbtn.textContent = 'delete';
 
-   localStorage.setItem('lists' , JSON.stringify(storage_box));
+        
 
-   const li = document.createElement('li');
-   li.textContent = inputs;
-   listContainer.appendChild(li);
-   
-   input_wins.value = '';
-});
+        delbtn.addEventListener('click' , function () {
+            p.remove();
+            li.remove();
+        });
+
+        let editbtn = document.createElement('button');
+        editbtn.textContent = 'edit';
+
+        editbtn.addEventListener('click', () => {
+            input.value = p.firstChild.textContent;
+            edittarget = p;
+            btn.textContent = 'save';
+            input.focus();
+            
+        });
+        p.appendChild(editbtn);
+        p.appendChild(delbtn);
+
+        li.appendChild(p);
+
+        taskbox.appendChild(li);
+
+        input.value = '';
+    
+
+        
+    }
+    else{
+        alert('enter a input')
+    }
+}
+
