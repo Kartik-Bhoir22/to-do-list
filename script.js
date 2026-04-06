@@ -1,61 +1,34 @@
-const input = document.getElementById('input');
-const btn = document.querySelector('.btn');
-const taskbox = document.querySelector('.task-list');
+const expense_name = document.getElementById('expense-name');
+const expense_amount = document.getElementById('expense-amount');
+const btn = document.getElementById('add-btn');
 
-let edittarget = null;
 
-function createTask() {
-    if (input.value !== ''){
+const expense_list = document.getElementById('expense-list');
 
-        let li = document.createElement('li');
+const totalamt = document.getElementById('Total');
 
-        if(edittarget) {
-            edittarget.firstChild.textContent = input.value;
-            edittarget = null ;
-            btn.textContent = 'add';
-            input.value = '';
-            return
-        }
+let amt = Number();
 
-        
-        
-        let p = document.createElement('p');
-        p.textContent = input.value;
-        
-        let delbtn = document.createElement('button');
-        delbtn.textContent = 'delete';
+btn.addEventListener('click' , () => {
+   if (expense_name.value&& expense_amount.value !== ''){
+     let li = document.createElement('li');
+     
 
-        
+     li.textContent = `${expense_name.value} - ${expense_amount.value}`;
+     console.log(li)
 
-        delbtn.addEventListener('click' , function () {
-            p.remove();
-            li.remove();
-        });
+     expense_list.append(li);
 
-        let editbtn = document.createElement('button');
-        editbtn.textContent = 'edit';
+     
 
-        editbtn.addEventListener('click', () => {
-            input.value = p.firstChild.textContent;
-            edittarget = p;
-            btn.textContent = 'save';
-            input.focus();
-            
-        });
-        p.appendChild(editbtn);
-        p.appendChild(delbtn);
+     amt += Number(expense_amount.value); 
 
-        li.appendChild(p);
+     expense_name.value = '';
+     expense_amount.value = '';
 
-        taskbox.appendChild(li);
-
-        input.value = '';
-    
-
-        
-    }
-    else{
-        alert('enter a input')
-    }
-}
-
+     totalamt.textContent= amt;
+   }
+   else {
+    alert('enter your input / amount');
+   }
+})

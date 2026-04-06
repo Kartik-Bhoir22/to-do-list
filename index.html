@@ -16,12 +16,16 @@
         <!--[if lt IE 7]>
             <p class="browsehappy">You are using an <strong>outdated</strong> browser. Please <a href="#">upgrade your browser</a> to improve your experience.</p>
         <![endif]-->
-        <div class="container">
-            <h1>To-Do list</h1>
-            <input type="text" class="input_task" id="input" name="input" placeholder="enter a task">
-            <button onclick="createTask()" class="btn" id="btn">Add</button>
-        </div>
-        <div class="task-list"></div>
+
+        <h1>expense tracker</h1>
+        <input type="text" id="expense-name" name="item-name" required placeholder="expense-name">
+        <input type="number" id="expense-amount" name="expense-amount" required placeholder="expense-amount">
+        <button type="button" id="add-btn">Add expense</button>
+
+        <ul id="expense-list"></ul>
+
+        <h3>Total : $<span id="Total">0</span></h3>
+        
         <script src="script.js" async defer></script>
     </body>
 </html>
